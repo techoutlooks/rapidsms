@@ -7,7 +7,7 @@ from django.utils.html import escape
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from rapidsms.models import ExtensibleModelBase
-
+from django.apps import apps
 
 class Point(models.Model):
     """
@@ -108,7 +108,7 @@ class Location(models.Model):
 
         return [
             cls
-            for cls in models.loading.get_models()
+            for cls in apps.get_models()
             if issubclass(cls, Location) and (cls is not Location)
         ]
 
